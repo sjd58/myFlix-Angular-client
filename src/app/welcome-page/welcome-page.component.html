@@ -1,3 +1,4 @@
+<!--
 <div class="main-page">
     <h1>
       Welcome to myFlix!
@@ -19,3 +20,32 @@
       Login
     </button>
   </div>
+-->
+  <mat-dialog-content>
+    <mat-card  style="width: 300px; margin: 10px;">
+        <mat-card-title>
+            Welcome to myFlix!
+        </mat-card-title>
+        <mat-card-content>
+            Please sign up or login if you have an existing account
+        </mat-card-content>
+        <mat-card-actions>
+          <button
+          mat-raised-button
+          (click)="openUserRegistrationDialog()"
+          style="margin-right: 10px;"
+          color="primary"
+        >
+          Sign Up
+        </button>
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="openUserLoginDialog()"
+          style="margin-right: 10px;"
+        >
+          Login
+        </button>
+        </mat-card-actions>
+    </mat-card>
+</mat-dialog-content>
