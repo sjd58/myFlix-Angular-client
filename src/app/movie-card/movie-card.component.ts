@@ -3,6 +3,7 @@ import { MatDialog, MAT_DIALOG_SCROLL_STRATEGY_PROVIDER_FACTORY } from '@angular
 import { DescriptionCardComponent } from '../description-card/description-card.component';
 import { DirectorCardComponent } from '../director-card/director-card.component';
 import { FetchApiDataService } from '../fetch-api-data.service'
+import { ProfileViewComponent } from '../profile-view/profile-view.component';
 import { GenreCardComponent } from '../genre-card/genre-card.component';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
