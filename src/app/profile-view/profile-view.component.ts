@@ -38,13 +38,13 @@ export class ProfileViewComponent implements OnInit {
   }
 
   getUser() {
-    if(localStorage.getItem('user') !=null) {
-      let userData: any = localStorage.getItem('user');
-      let username = JSON.parse(userData).Username;
+    if (localStorage.getItem('user') != null) {
+      const username = localStorage.getItem('user');
       this.fetchApiData.getUser(username).subscribe((resp: any) => {
+        console.log(resp);
         this.user = resp;
       });
-    };
+    }
   }
 
   getMoviesAndFaves() {
