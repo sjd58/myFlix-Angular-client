@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, Input, inject } from '@angular/core';
+import { Component, OnInit, Inject, Input, } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FetchApiDataService } from '../fetch-api-data.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -29,17 +29,20 @@ export class UpdateInfoComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  editUser(): void {
-    if (this.newData.Username && this.newData.Password && this.newData.Email && this.newData.Birthday) {
-      this.fetchApiData.editUser(this.newData).subscribe((resp: any) => {
-        this.dialogRef.close();
-        window.location.reload();
-        localStorage.setItem('user', JSON.stringify(resp));
-        this.snackbar.open('Data Successfully updated', 'OK', { duration: 2000 })
-      });
-    } else {
-      this.snackbar.open('Please fill all the fields', 'OK', { duration: 2000 })
-    }
-  }
 
+  editUser(): void {
+    this.fetchApiData.editUser(this.newData).subscribe((resp) => {
+      this.dialogRef.close();
+      localStorage.setItem('user', resp.Username);
+      this.snackbar.open('Your profile was updated successfully.', 'OK', {
+        duration: 2000
+      });
+      setTimeout(() => {
+        window.location.reload();
+      });
+    });
+  }
+  closeDialog(): void {
+    this.dialogRef.close();
+  }
 }
