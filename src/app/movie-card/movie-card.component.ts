@@ -1,3 +1,8 @@
+/**
+ * MovieCardComponent allows users to view movies and add their favorites to their profiles.
+ * @module MovieCardComponent
+ */
+
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MAT_DIALOG_SCROLL_STRATEGY_PROVIDER_FACTORY } from '@angular/material/dialog';
 import { DescriptionCardComponent } from '../description-card/description-card.component';
@@ -35,7 +40,10 @@ export class MovieCardComponent {
     this.getMovies();
   }
 
-  //edit to be get movies and favorites
+  /**
+   * Make an API endpoint call to get all movies.
+   * @function getMovies
+   */
   getMovies(): void {
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
         this.movies = resp;
@@ -44,6 +52,10 @@ export class MovieCardComponent {
     });
   }
 
+  /**
+   * Make an API endpoint call go get user information.
+   * @function getUserInfo
+   */
   getUserInfo() {
     if (localStorage.getItem('user') !=null) {
       let userData: any = localStorage.getItem('user');
@@ -54,6 +66,12 @@ export class MovieCardComponent {
     };
   }
 
+  /**
+   * Open dialog to display GenreCardComponent
+   * @module openGenre
+   * @param name {string}
+   * @param description {string}
+   */
   openGenre(name: string, description: string): void {
     this.dialog.open(GenreCardComponent, {
       data: {
@@ -64,6 +82,12 @@ export class MovieCardComponent {
     });
   }
 
+  /**
+   * Open dialog to display DescriptionCardComponent
+   * @module DescriptionCardComponent
+   * @param name {string}
+   * @param description {string}
+   */
   openDescription(name: string, description: string): void {
     this.dialog.open(DescriptionCardComponent, {
       data: {
@@ -74,6 +98,14 @@ export class MovieCardComponent {
     });
   }
 
+  /**
+   * Open dialog to display DirectorCardComponent
+   * @module DirectorCardComponent
+   * @param name {string}
+   * @param bio {string}
+   * @param birth {string}
+   * @param death {string}
+   */
   openDirector(name: string, bio: string, birth: string, death: string): void {
     this.dialog.open(DirectorCardComponent, {
       data: {
@@ -86,6 +118,11 @@ export class MovieCardComponent {
     });
   }
 
+  /**
+   * Make an API endpoint call to add a movie to the user's favorites.
+   * @function addToFavorites
+   * @param movieId {string}
+   */
   addToFavorites(movieId: string): void {
     this.fetchApiData.addFavoriteMovie(movieId).subscribe((resp: any) => {
       this.movies.forEach((movie) => {
@@ -97,6 +134,11 @@ export class MovieCardComponent {
     });
   }
 
+  /**
+   * Make an API endpoint call to remove a move from the user's favorites.
+   * @function removeFromFavorites
+   * @param movieId 
+   */
   removeFromFavorites(movieId:string): void {
     this.fetchApiData.deleteFavoriteMovie(movieId).subscribe((resp: any) => {
       const previousFavoritesMinusDisfavored = this.currentUserFavorites.filter(movie => movie._id !== movieId);
@@ -105,6 +147,12 @@ export class MovieCardComponent {
     })
   }
 
+  /**
+   * This function monitors the favorite status of each movie so the component displays the correct favorite icon.
+   * @function itIsAFave
+   * @param movieId {string}
+   * @returns Boolean
+   */
   itIsAFave(movieId: string): any {
     const movieArray: any[] = this.currentUserFavorites;
     if(movieArray.some(movie => movie._id === movieId)){
@@ -114,10 +162,18 @@ export class MovieCardComponent {
     }
   }
 
+  /**
+   * Navigate to the profile component
+   * @function openProfile
+   */
   openProfile(): void {
     this.router.navigate(['/profile']);
   }
 
+  /**
+   * This function signs the user out by clearing their JWT from localStorage
+   * @function signOut
+   */
   signOut(): void {
     this.router.navigate(['welcome']);
     localStorage.clear();

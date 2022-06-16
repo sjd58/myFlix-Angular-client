@@ -1,3 +1,8 @@
+/**
+ * GenreCardComponent is meant to display information about genres to users.
+ * @module GenreCardComponent
+ */
+
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
@@ -7,6 +12,10 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./genre-card.component.scss']
 })
 
+/**
+ * 
+ * @param data
+ */
 export class GenreCardComponent implements OnInit {
 
   constructor(

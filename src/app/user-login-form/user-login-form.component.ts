@@ -1,3 +1,7 @@
+/**
+ * UserLoginFormComponent's purpose is to allow users to login to the app.
+ * @module UserLoginFormComponent
+ */
 import { Component, OnInit, Input } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { FetchApiDataService } from '../fetch-api-data.service'
@@ -11,6 +15,9 @@ import { Router } from '@angular/router';
 })
 export class UserLoginFormComponent implements OnInit {
 
+  /**
+   * This binds data entered to the user to the userData object.
+   */
   @Input() userData = { Username: '', Password: ''};
 
   constructor(
@@ -22,6 +29,11 @@ export class UserLoginFormComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  /**
+   * The loginUser function makes a call to the API to login the user, then receives a JSON object
+   * with the JWT the user needs to login, stored in localStorage.
+   * @function loginUser
+   */
   loginUser(): void {
     this.fetchApiData.userLogin(this.userData).subscribe(
       (response) => {

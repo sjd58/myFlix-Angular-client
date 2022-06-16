@@ -1,3 +1,8 @@
+/**
+ * DescriptionCardComponent is used to display descriptions of movies to users.
+ * @module DescriptionCardComponent
+ */
+
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
@@ -6,6 +11,9 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   templateUrl: './description-card.component.html',
   styleUrls: ['./description-card.component.scss']
 })
+/**
+ * @param data
+ */
 export class DescriptionCardComponent implements OnInit {
 
   constructor(

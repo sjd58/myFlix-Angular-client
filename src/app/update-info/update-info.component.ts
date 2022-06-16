@@ -1,3 +1,8 @@
+/**
+ * The purpose of UpdateInfoComponent is to allow users to change data associated with their profile.
+ * @module UpdateInfoComponent
+ */
+
 import { Component, OnInit, Inject, Input, } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FetchApiDataService } from '../fetch-api-data.service';
@@ -11,6 +16,9 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class UpdateInfoComponent implements OnInit {
 
+  /**
+   * The purpose of this code is to bind input values to the newData object.
+   */
   @Input() newData = { Username: '', Password: '', Email: '', Birthday: ''}
 
   constructor(
@@ -29,7 +37,10 @@ export class UpdateInfoComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
+/**
+ * Makes API calls so users can update their profiles with the data in the newData object.
+ * @function editUser
+ */
   editUser(): void {
     this.fetchApiData.editUser(this.newData).subscribe((resp) => {
       this.dialogRef.close();

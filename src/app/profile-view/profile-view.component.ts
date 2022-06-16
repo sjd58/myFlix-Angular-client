@@ -1,3 +1,8 @@
+/**
+ * ProfileViewComponent is used to view the user's profile. It is linked to the update-info component so users can update their info.
+ * @module ProfileViewComponent
+ */
+
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatDialog } from '@angular/material/dialog';
@@ -37,6 +42,10 @@ export class ProfileViewComponent implements OnInit {
     this.getMoviesAndFaves();
   }
 
+  /**
+   * Make an API endpoint call to get user info
+   * @function getUser
+   */
   getUser() {
     if (localStorage.getItem('user') != null) {
       const username = localStorage.getItem('user');
@@ -47,6 +56,10 @@ export class ProfileViewComponent implements OnInit {
     }
   }
 
+  /**
+   * Make an API endpoint call to get the user's favorite movies
+   * @function getMoviesAndFaves
+   */
   getMoviesAndFaves() {
     this.fetchApiData.getAllMovies().subscribe((res: any) =>{
       this.movies = res;
@@ -58,16 +71,32 @@ export class ProfileViewComponent implements OnInit {
     });
   }
 
+  /**
+   * Makes the router navigate to the MovieCardComponent
+   * @function goToMovieCard
+   */
   goToMovieCard(): void {
     this.router.navigate(['movies']);
   }
 
+  /**
+   * Open UpdateInfoComponent dialog
+   * @module openUpdateInfoCard
+   */
   openUpdateInfoCard(): void {
     this.dialog.open(UpdateInfoComponent, {
       width: '500px'
     });
   }
 
+  /**
+   * Open the dialog to display the DirectorCardComponent
+   * @module openDirector
+   * @param name {string}
+   * @param bio {string}
+   * @param birth {string}
+   * @param death {string}
+   */
   openDirector(name: string, bio: string, birth: string, death: string): void {
     this.dialog.open(DirectorCardComponent, {
       data: {
@@ -80,6 +109,12 @@ export class ProfileViewComponent implements OnInit {
     });
   }
 
+  /**
+   * Open the dialog box to display GenreCardComponent
+   * @module openGenre
+   * @param name {string}
+   * @param description {string}
+   */
   openGenre(name: string, description: string): void {
     this.dialog.open(GenreCardComponent, {
       data: {
@@ -90,6 +125,12 @@ export class ProfileViewComponent implements OnInit {
     });
   }
 
+  /**
+   * Open the dialog box to display DescriptionCardComponent
+   * @module DescriptionCardComponent
+   * @param name {string}
+   * @param description {string}
+   */
   openDescription(name: string, description: string): void {
     this.dialog.open(DescriptionCardComponent, {
       data: {
@@ -100,6 +141,11 @@ export class ProfileViewComponent implements OnInit {
     });
   }
 
+  /**
+   * Call the API to add a favorite movie.
+   * @function addToFavorites
+   * @param movieId {string}
+   */
   addToFavorites(movieId: string): void {
     this.fetchApiData.addFavoriteMovie(movieId).subscribe((resp: any) => {
       this.movies.forEach((movie) => {
@@ -111,6 +157,11 @@ export class ProfileViewComponent implements OnInit {
     });
   }
 
+  /**
+   * Call the API to remove a favorite movie.
+   * @function removeFromFavorites
+   * @param movieId
+   */
   removeFromFavorites(movieId: string): void {
     this.fetchApiData.deleteFavoriteMovie(movieId).subscribe((resp: any) => {
       const previousFavoritesMinusDisfavored = this.currentUsersFaves.filter(movie => movie._id !== movieId);
@@ -119,6 +170,12 @@ export class ProfileViewComponent implements OnInit {
     })
   }
 
+  /**
+   * This keeps track of whether or not a given movie is a favorite so the app can display the correct favorite icon.
+   * @function itIsAFave
+   * @param movieId {string}
+   * @returns Boolean
+   */
   itIsAFave(movieId: string): any {
     const movieArray: any[] = this.currentUsersFaves;
     if(movieArray.some(movie => movie._id === movieId)){
@@ -128,6 +185,10 @@ export class ProfileViewComponent implements OnInit {
     }
   }
 
+  /**
+   * This function logs a user out by clearing their JWT from localStorage
+   * @function signOut
+   */
   signOut(): void {
     this.router.navigate(['welcome']);
     localStorage.clear();
