@@ -1,36 +1,14 @@
-<!--
-<div class="main-page">
-    <h1>
-      Welcome to myFlix!
-    </h1>
-    <button
-      mat-raised-button
-      (click)="openUserRegistrationDialog()"
-      style="margin-right: 10px;"
-      color="primary"
-    >
-      Sign Up
-    </button>
-    <button
-      mat-raised-button
-      color="primary"
-      (click)="openUserLoginDialog()"
-      style="margin-right: 10px;"
-    >
-      Login
-    </button>
-  </div>
--->
   <mat-dialog-content>
-    <mat-card  style="width: 300px; margin: 10px;">
+    <mat-card  style="width: 300px; margin: 10px;" class="welcome-card">
         <mat-card-title>
             Welcome to myFlix!
         </mat-card-title>
         <mat-card-content>
-            Please sign up or login if you have an existing account
+            Please sign up or login if you have an existing account to view and save your favorite movies.
         </mat-card-content>
         <mat-card-actions>
           <button
+          class="welcome-button"
           mat-raised-button
           (click)="openUserRegistrationDialog()"
           style="margin-right: 10px;"
@@ -39,6 +17,7 @@
           Sign Up
         </button>
         <button
+          class="welcome-button"
           mat-raised-button
           color="primary"
           (click)="openUserLoginDialog()"

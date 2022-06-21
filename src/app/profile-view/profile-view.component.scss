@@ -1,0 +1,53 @@
+.favorites-list {
+    flex-wrap: wrap;
+  }
+  
+  .movie-card {
+    width: 15%;
+    max-width: 320px;
+    margin: 15px 15px;
+    padding: 15px 15px;
+    text-align: center;
+    border-style: solid;
+    border-width: 1px;
+    border-color: gray;
+    border-radius: 3px;
+    box-shadow: 5px 5px lightgray;
+  }
+  
+  mat-card-header {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .movie-poster {
+    width: 150px;
+  }
+  
+  .profile-panel {
+    display: flex;
+    align-items: flex-end;
+    padding: 15px 15px;
+    gap: 36px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: gray;
+    border-radius: 3px;
+    box-shadow: 5px 5px lightgray;
+    margin: 15px 15px;
+    background-color: white;
+    flex-direction: row;
+    justify-content: space-between;
+    width: auto;
+  }
+  
+  .sign-out-button {
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row;
+    height: fit-content;
+  }
+  
+  .profile-panel:hover {
+    opacity: 100%;
+  }

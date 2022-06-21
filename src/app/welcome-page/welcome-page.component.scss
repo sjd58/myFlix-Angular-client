@@ -1,0 +1,21 @@
+.welcome-card {
+    text-align: center;
+    background-color: white;
+    width: 300px;
+    padding: 15px;
+    margin: auto;
+    border-radius: 3px;
+    border-color: gray;
+    border-width: 1px;
+    border-style: solid;
+    box-shadow: 5px 5px lightgray;
+  }
+
+  .welcome-button {
+    opacity: 80%;
+    transition: 0.3s;
+  }
+  
+  .welcome-button:hover {
+    opacity: 100%
+  }
